@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MemoryGame.Services;
+using MemoryGame.Models;
 
 namespace MemoryGame.Controllers
 {
@@ -16,6 +17,21 @@ namespace MemoryGame.Controllers
         {
             var players = await _service.GetAllPlayersAsync();
             return View(players);
+        }
+
+        [HttpGet]
+        public IActionResult AddPlayer()
+        {
+            PlayerModel player = new PlayerModel();
+
+            return View(player);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPlayer(PlayerModel player)
+        {
+            await _service.AddPlayerAsync(player);
+            return RedirectToAction("GetAllPlayers");
         }
     }
 }

@@ -12,12 +12,8 @@ namespace MemoryGame.Services
             _repo = repo;
         }
 
-        public async Task AddPlayerAsync(string name)
+        public async Task AddPlayerAsync(PlayerModel player)
         {
-            var player = new PlayerModel
-            {
-                DisplayName = name
-            };
             await _repo.AddAsync(player);
         }
 
