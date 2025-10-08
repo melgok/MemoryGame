@@ -30,8 +30,7 @@ public class AccountController : Controller
             ViewBag.Error = "Spelarna måste vara olika.";
             return View(players);
         }
-Console.WriteLine($"Player1Id: {Player1Id}, Player1Username: {Player1Username}, Player1Password: {Player1Password}");
-Console.WriteLine($"Player2Id: {Player2Id}, Player2Username: {Player2Username}, Player2Password: {Player2Password}");
+
         var player1 = players.FirstOrDefault(player => player.PlayerId == Player1Id && player.Username == Player1Username && player.Password == Player1Password);
         var player2 = players.FirstOrDefault(player => player.PlayerId == Player2Id && player.Username == Player2Username && player.Password == Player2Password);
         if (player1 == null || player2 == null)
@@ -41,7 +40,6 @@ Console.WriteLine($"Player2Id: {Player2Id}, Player2Username: {Player2Username}, 
         }
         HttpContext.Session.SetString("Player1", player1.DisplayName);
         HttpContext.Session.SetString("Player2", player2.DisplayName);
-        // Implement login logic here
         return RedirectToAction("ConfirmLogin");
 
     }
@@ -52,5 +50,4 @@ Console.WriteLine($"Player2Id: {Player2Id}, Player2Username: {Player2Username}, 
         return View();
     }
 
-    // Add account-related actions here
 }

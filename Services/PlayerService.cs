@@ -5,9 +5,9 @@ namespace MemoryGame.Services
 {
     public class PlayerService
     {
-        private readonly IPlayerRepository _repo;
+        private readonly PlayerRepository _repo;
 
-        public PlayerService(IPlayerRepository repo)
+        public PlayerService(PlayerRepository repo)
         {
             _repo = repo;
         }

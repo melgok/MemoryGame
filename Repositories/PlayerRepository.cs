@@ -2,10 +2,11 @@ using MemoryGame.Data;
 using MemoryGame.Entities;
 using MemoryGame.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
 namespace MemoryGame.Repositories
 {
-    public class PlayerRepository : IPlayerRepository
+    public class PlayerRepository 
     {
         private readonly AppDbContext _database;
 
@@ -20,7 +21,9 @@ namespace MemoryGame.Repositories
                 .Select(player => new PlayerModel
                 {
                     PlayerId = player.PlayerId,
-                    DisplayName = player.DisplayName
+                    DisplayName = player.DisplayName,
+                    Username = player.Username,
+                    Password = player.Password
                 })
                 .ToListAsync();
         }
@@ -34,6 +37,9 @@ namespace MemoryGame.Repositories
             {
                 PlayerId = entity.PlayerId,
                 DisplayName = entity.DisplayName,
+                Username = entity.Username,
+                Password = entity.Password
+
             };
         }
 
@@ -42,6 +48,8 @@ namespace MemoryGame.Repositories
             var entity = new PlayerEntity
             {
                 DisplayName = player.DisplayName,
+                Username = player.Username,
+                Password = player.Password
             };
 
             _database.Players.Add(entity);
@@ -55,6 +63,8 @@ namespace MemoryGame.Repositories
             if (entity == null) return;
 
             entity.DisplayName = player.DisplayName;
+            entity.Username = player.Username;
+            entity.Password = player.Password;
             await _database.SaveChangesAsync();
         }
 
