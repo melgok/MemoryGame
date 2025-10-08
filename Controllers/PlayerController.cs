@@ -11,5 +11,11 @@ namespace MemoryGame.Controllers
         {
             _service = service;
         }
+
+        public async Task<IActionResult> GetAllPlayers()
+        {
+            var players = await _service.GetAllPlayersAsync();
+            return View(players);
+        }
     }
 }

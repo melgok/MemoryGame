@@ -1,0 +1,32 @@
+@model IEnumerable<MemoryGame.Models.PlayerModel>
+
+@{
+    ViewData["Title"] = "Players";
+}
+
+<h2>Players</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Player Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model)
+        {
+            <tr>
+                <td>@player.DisplayName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@player.PlayerId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@player.PlayerId" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@player.PlayerId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Player</a>
+</p>

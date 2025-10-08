@@ -228,3 +228,4 @@
 /Users/melissagok/MemoryGame/obj/Debug/net9.0/MemoryGame.pdb
 /Users/melissagok/MemoryGame/obj/Debug/net9.0/MemoryGame.genruntimeconfig.cache
 /Users/melissagok/MemoryGame/obj/Debug/net9.0/ref/MemoryGame.dll
+/Users/melissagok/MemoryGame/obj/Debug/net9.0/MemoryGame.sourcelink.json

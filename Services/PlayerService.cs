@@ -21,5 +21,10 @@ namespace MemoryGame.Services
             await _repo.AddAsync(player);
         }
 
+        public async Task<IEnumerable<PlayerModel>> GetAllPlayersAsync()
+        {
+            return await _repo.GetAllAsync();
+        }
+
     }
 }
