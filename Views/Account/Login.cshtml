@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Välj spelare";
+}
+
+<h2>Logga in spelare</h2>
+
+<form asp-action="Login" method="post">
+    <div>
+        <h4>Spelare 1</h4>
+        <select name="Player1Id" asp-items="ViewBag.PlayerList"></select>
+        <br />
+        <input type="text" name="Player1Username" placeholder="Användarnamn" />
+        <input type="password" name="Player1Password" placeholder="Lösenord" />
+    </div>
+
+    <div style="margin-top:15px;">
+        <h4>Spelare 2</h4>
+        <select name="Player2Id" asp-items="ViewBag.PlayerList"></select>
+        <br />
+        <input type="text" name="Player2Username" placeholder="Användarnamn" />
+        <input type="password" name="Player2Password" placeholder="Lösenord" />
+    </div>
+
+    <div style="margin-top:20px;">
+        <button type="submit">Starta spelet</button>
+    </div>
+
+    <p style="color:red">@ViewBag.Error</p>
+</form>
