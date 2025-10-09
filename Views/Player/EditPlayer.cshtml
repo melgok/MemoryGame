@@ -1,31 +1,31 @@
 @model MemoryGame.Models.PlayerModel
 
-<h2>Lägg till spelare</h2>
+<h2>Edit Player</h2>
 
-<form asp-action="AddPlayer" method="post">
+<form asp-action="EditPlayer" method="post">
+    <input type="hidden" asp-for="PlayerId" />
+    
     <div class="form-group">
         <label asp-for="DisplayName" class="control-label"></label>
         <input asp-for="DisplayName" class="form-control" />
         <span asp-validation-for="DisplayName" class="text-danger"></span>
     </div>
-     <div class="form-group">
+     @*  <div class="form-group">
         <label asp-for="Username" class="control-label"></label>
         <input asp-for="Username" class="form-control" />
         <span asp-validation-for="Username" class="text-danger"></span>
     </div>
-     <div class="form-group">
+      <div class="form-group">
         <label asp-for="Password" class="control-label"></label>
         <input asp-for="Password" type="password" class="form-control" />
         <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Skapa" class="btn btn-primary" />
+    </div> *@
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="GetAllPlayers" class="btn btn-secondary">Tillbaka till lista</a>
     </div>
 </form>
-
-<div>
-    <a asp-action="Index">Tillbaka till listan</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

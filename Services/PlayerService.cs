@@ -22,5 +22,20 @@ namespace MemoryGame.Services
             return await _repo.GetAllAsync();
         }
 
+        public async Task<PlayerModel?> GetByIdAsync(int id)
+        {
+            return await _repo.GetByIdAsync(id);
+        }
+
+        public async Task UpdatePlayerAsync(PlayerModel player)
+        {
+            await _repo.UpdateAsync(player);
+        }
+
+        public async Task DeletePlayerAsync(int id)
+        {
+            await _repo.DeleteAsync(id);
+        }
+
     }
 }

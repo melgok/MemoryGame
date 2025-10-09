@@ -33,5 +33,27 @@ namespace MemoryGame.Controllers
             await _service.AddPlayerAsync(player);
             return RedirectToAction("GetAllPlayers");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditPlayer(int id)
+        {
+            var player = await _service.GetByIdAsync(id);
+            return View(player);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPlayer(PlayerModel player)
+        {
+            await _service.UpdatePlayerAsync(player);
+            return RedirectToAction("GetAllPlayers");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeletePlayer(int id)
+        {
+            await _service.DeletePlayerAsync(id);
+            return RedirectToAction("GetAllPlayers");
+        }   
+
     }
 }
