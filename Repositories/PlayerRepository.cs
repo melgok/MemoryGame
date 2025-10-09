@@ -54,7 +54,7 @@ namespace MemoryGame.Repositories
 
             _database.Players.Add(entity);
             await _database.SaveChangesAsync();
-            player.PlayerId = entity.PlayerId; // Uppdatera ID efter sparning
+            player.PlayerId = entity.PlayerId; 
         }
 
         public async Task UpdateAsync(PlayerModel player)
