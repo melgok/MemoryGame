@@ -63,8 +63,8 @@ namespace MemoryGame.Repositories
             if (entity == null) return;
 
             entity.DisplayName = player.DisplayName;
-            entity.Username = player.Username;
-            entity.Password = player.Password;
+           /*  entity.Username = player.Username;
+            entity.Password = player.Password; */
             await _database.SaveChangesAsync();
         }
 

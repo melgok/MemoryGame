@@ -9,7 +9,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Player Name</th>
+            <th>Spelare</th>
         </tr>
     </thead>
     <tbody>
@@ -18,9 +18,10 @@
             <tr>
                 <td>@player.DisplayName</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@player.PlayerId" class="btn btn-primary">Edit</a>
-                    <a asp-action="Details" asp-route-id="@player.PlayerId" class="btn btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@player.PlayerId" class="btn btn-danger">Delete</a>
+                    <a asp-action="EditPlayer" asp-route-id="@player.PlayerId" class="btn btn-primary">Redigera</a>
+                    @* <a asp-action="Details" asp-route-id="@player.PlayerId" class="btn btn-info">Detaljer</a> *@
+                    <a asp-action="DeletePlayer" asp-route-id="@player.PlayerId" class="btn btn-danger" 
+                       onclick="return confirm('Är du säker på att du vill ta bort spelaren @player.DisplayName?')">Ta bort</a>
                 </td>
             </tr>
         }
@@ -28,5 +29,5 @@
 </table>
 
 <p>
-    <a asp-action="Create" class="btn btn-success">Create New Player</a>
+    <a asp-action="AddPlayer" class="btn btn-success">Skapa ny spelare</a>
 </p>
