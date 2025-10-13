@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmLogin";
+}
+
+<h2>Inloggningen lyckades!</h2>
+<p>@ViewBag.Player1 vs @ViewBag.Player2</p>
+
+@* <div style="margin-top:20px;">
+    <a asp-controller="Game" asp-action="StartGame" class="btn btn-primary">
+        Starta spelet
+    </a>
+</div> *@
+
+<form asp-controller="Game" asp-action="StartGame" method="post">
+    <button type="submit" class="btn btn-primary">Starta spelet</button>
+</form>

@@ -14,6 +14,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddTransient<PlayerRepository>();
 builder.Services.AddTransient<PlayerService>();
 
+builder.Services.AddTransient<GameRepository>();
+builder.Services.AddTransient<GameService>();
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
