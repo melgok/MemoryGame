@@ -14,6 +14,10 @@ namespace MemoryGame.Data
 
         public DbSet<ScoreEntity> Scores { get; set; }
 
+        public DbSet<PairEntity> Pairs { get; set; }
+
+        public DbSet<CardEntity> Cards { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PlayerEntity>()
@@ -24,6 +28,12 @@ namespace MemoryGame.Data
 
             modelBuilder.Entity<ScoreEntity>()
                 .HasKey(e => new { e.PlayerId, e.GameId });
+
+            modelBuilder.Entity<PairEntity>()
+               .HasKey(e => e.PairId);
+                
+            modelBuilder.Entity<CardEntity>()
+                .HasKey(e => e.CardId);
 
             modelBuilder.Entity<ScoreEntity>()
                 .HasOne(e => e.Player)
@@ -44,6 +54,11 @@ namespace MemoryGame.Data
                 .HasOne(e => e.WinnerPlayer)
                 .WithMany(e => e.WonGames)
                 .HasForeignKey(e => e.WinnerPlayerId);
+
+            modelBuilder.Entity<CardEntity>()
+                .HasOne(e => e.Pair)
+                .WithMany(e => e.Cards)
+                .HasForeignKey(e => e.PairId);
         }
     } 
 }

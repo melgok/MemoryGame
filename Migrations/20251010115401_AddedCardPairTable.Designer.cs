@@ -3,6 +3,7 @@ using MemoryGame.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MemoryGame.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251010115401_AddedCardPairTable")]
+    partial class AddedCardPairTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace MemoryGame.Migrations
 
                     b.HasIndex("PairId");
 
-                    b.ToTable("Cards");
+                    b.ToTable("CardEntity");
                 });
 
             modelBuilder.Entity("MemoryGame.Entities.GameEntity", b =>
@@ -82,7 +85,7 @@ namespace MemoryGame.Migrations
 
                     b.HasKey("PairId");
 
-                    b.ToTable("Pairs");
+                    b.ToTable("PairEntity");
                 });
 
             modelBuilder.Entity("MemoryGame.Entities.PlayerEntity", b =>
