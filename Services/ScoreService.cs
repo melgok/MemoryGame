@@ -1,33 +1,36 @@
 using MemoryGame.Entities;
 using MemoryGame.Repositories;
 
-public class ScoreService
+namespace MemoryGame.Services
 {
-    private readonly ScoreRepository _scoreRepository;
-
-    public ScoreService(ScoreRepository scoreRepository)
+    public class ScoreService
     {
-        _scoreRepository = scoreRepository;
-    }
+        private readonly ScoreRepository _scoreRepository;
 
-    public async Task<ScoreEntity> AddScoreAsync(ScoreEntity score)
-    {
-        await _scoreRepository.AddAsync(score);
-        return score;
-    }
+        public ScoreService(ScoreRepository scoreRepository)
+        {
+            _scoreRepository = scoreRepository;
+        }
 
-    public async Task<ScoreEntity?> GetScoreByIdAsync(int gameId, int id)
-    {
-        return await _scoreRepository.GetByIdAsync(gameId, id);
-    }
+        public async Task<ScoreEntity> AddScoreAsync(ScoreEntity score)
+        {
+            await _scoreRepository.AddAsync(score);
+            return score;
+        }
 
-    public async Task<List<ScoreEntity>> GetAllScoresAsync()
-    {
-        return await _scoreRepository.GetAllAsync();
-    }
+        public async Task<ScoreEntity?> GetScoreByIdAsync(int gameId, int id)
+        {
+            return await _scoreRepository.GetByIdAsync(gameId, id);
+        }
 
-   public async Task UpdateScoreAsync(ScoreEntity updatedScore)
-    {
-        await _scoreRepository.UpdateAsync(updatedScore);
+        public async Task<List<ScoreEntity>> GetAllScoresAsync()
+        {
+            return await _scoreRepository.GetAllAsync();
+        }
+
+        public async Task UpdateScoreAsync(ScoreEntity updatedScore)
+        {
+            await _scoreRepository.UpdateAsync(updatedScore);
+        }
     }
 }

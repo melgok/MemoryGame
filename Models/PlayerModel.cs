@@ -1,5 +1,4 @@
 
-
 namespace MemoryGame.Models
 {
     public class PlayerModel

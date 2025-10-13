@@ -1,34 +1,39 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MemoryGame.Entities;
+using MemoryGame.Repositories;
 
-public class GameService
+namespace MemoryGame.Services
 {
-    private readonly GameRepository _gameRepository;
-
-    public GameService(GameRepository gameRepository)
+    public class GameService
     {
-        _gameRepository = gameRepository;
-    }
+        private readonly GameRepository _gameRepository;
 
-    public async Task<GameEntity?> GetGameAsync(int id)
-    {
-        return await _gameRepository.GetByIdAsync(id);
-    }
+        public GameService(GameRepository gameRepository)
+        {
+            _gameRepository = gameRepository;
+        }
 
-    public async Task<List<GameEntity>> GetAllGamesAsync()
-    {
-        return await _gameRepository.GetAllAsync();
-    }
+        public async Task<GameEntity?> GetGameAsync(int id)
+        {
+            return await _gameRepository.GetByIdAsync(id);
+        }
 
-    public async Task CreateGameAsync(GameEntity newGame)
-    {
-        await _gameRepository.AddAsync(newGame);
-    }
+        public async Task<List<GameEntity>> GetAllGamesAsync()
+        {
+            return await _gameRepository.GetAllAsync();
+        }
 
-    public async Task UpdateGameAsync(GameEntity updatedGame)
-    {
-        await _gameRepository.UpdateAsync(updatedGame);
+        public async Task CreateGameAsync(GameEntity newGame)
+        {
+            await _gameRepository.AddAsync(newGame);
+        }
+
+        public async Task UpdateGameAsync(GameEntity updatedGame)
+        {
+            await _gameRepository.UpdateAsync(updatedGame);
+        }
+
     }
 
 }
