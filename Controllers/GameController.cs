@@ -16,6 +16,13 @@ namespace MemoryGame.Controllers
 
         public IActionResult StartGame()
         {
+            GameModel gameModel1 = new();
+            
+            
+
+
+            
+            
             return View();
         }
 
