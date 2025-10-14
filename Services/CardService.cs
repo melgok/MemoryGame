@@ -18,7 +18,7 @@ namespace MemoryGame.Services
             return await _repo.GetAllAsync();
         }
 
-        public async Task<GameModel?> GetByIdAsync(int id)
+        public async Task<CardModel?> GetByIdAsync(int id)
         {
             return await _repo.GetByIdAsync(id);
         }
