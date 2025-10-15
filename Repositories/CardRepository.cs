@@ -20,10 +20,13 @@ namespace MemoryGame.Repositories
                 .Select(card => new CardModel
                 {
                     CardId = card.CardId,
+                    IsHidden = card.IsHidden,
+                    IsMatched = card.IsMatched,
                     Pair = new Model.PairModel
                     {
                         PairId = card.Pair.PairId,
                         Image = card.Pair.Image
+
                     },
                 })
                 .ToListAsync();
