@@ -1,7 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using MemoryGame.Entities;
 using MemoryGame.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 namespace MemoryGame.Services
@@ -11,9 +12,10 @@ namespace MemoryGame.Services
         private readonly GameRepository _gameRepository;
         private readonly PairRepository _pairRepository;
 
-        public GameService(GameRepository gameRepository)
+        public GameService(GameRepository gameRepository, PairRepository pairRepository)
         {
             _gameRepository = gameRepository;
+            _pairRepository = pairRepository;
         }
 
         public async Task<GameEntity?> GetGameAsync(int id)
@@ -33,12 +35,7 @@ namespace MemoryGame.Services
 
         public async Task StartGameAsync()
         {
-            var allPairs = await _pairRepository.GetAllAsync();
-            if (!allPairs.Any())
-            {
-                await _pairRepository.CreatePairAsync();   
-                allPairs = await _pairRepository.GetAllAsync();
-            }
+            await _pairRepository.SeedPairsAsync();
         }
        
 

@@ -17,6 +17,12 @@ builder.Services.AddTransient<PlayerService>();
 builder.Services.AddTransient<GameRepository>();
 builder.Services.AddTransient<GameService>();
 
+builder.Services.AddTransient<PairRepository>();
+builder.Services.AddTransient<PairService>();
+
+builder.Services.AddTransient<CardRepository>();
+builder.Services.AddTransient<CardService>();
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

@@ -20,48 +20,39 @@ namespace MemoryGame.Repositories
                 .ToListAsync();
         }
 
-        public async Task CreatePairAsync()
+        public async Task SeedPairsAsync()
         {
-           if (await _context.Pairs.AnyAsync())
-            return;
+            if (await _context.Pairs.AnyAsync())
+                return;
 
-            string appleBase64 = Convert.ToBase64String(File.ReadAllBytes("SeedImages/apple.png"));
-            /* string bananaBase64 = Convert.ToBase64String(File.ReadAllBytes("SeedImages/banana.png"));
-            string catBase64 = Convert.ToBase64String(File.ReadAllBytes("SeedImages/cat.png")); */
+            var imageFolder = Path.Combine(Directory.GetCurrentDirectory(), "SeedImages");
 
-        var pairs = new List<PairEntity>
-        {
-            new PairEntity
-            {
-                Image = appleBase64,
-                Cards = new List<CardEntity>
-                {
-                    new CardEntity { IsHidden = true, IsMatched = false },
-                    new CardEntity { IsHidden = true, IsMatched = false }
-                }
-            },
-            /* new PairEntity
-            {
-                Image = bananaBase64,
-                Cards = new List<CardEntity>
-                {
-                    new CardEntity { IsHidden = true, IsMatched = false },
-                    new CardEntity { IsHidden = true, IsMatched = false }
-                }
-            },
-            new PairEntity
-            {
-                Image = catBase64,
-                Cards = new List<CardEntity>
-                {
-                    new CardEntity { IsHidden = true, IsMatched = false },
-                    new CardEntity { IsHidden = true, IsMatched = false }
-                }
-            } */
-        };
+            if (!Directory.Exists(imageFolder))
+                throw new DirectoryNotFoundException($"SeedImages-folder saknas: {imageFolder}");
 
-        await _context.Pairs.AddRangeAsync(pairs);
-        await _context.SaveChangesAsync();
+            var imageFiles = Directory.GetFiles(imageFolder, "*.png");
+
+            var pairs = new List<PairEntity>();
+
+            foreach (var file in imageFiles)
+            {
+                var base64 = Convert.ToBase64String(File.ReadAllBytes(file));
+
+                var pair = new PairEntity
+                {
+                    Image = base64,
+                    Cards =
+                    [
+                        new CardEntity { IsHidden = true, IsMatched = false },
+                        new CardEntity { IsHidden = true, IsMatched = false }
+                    ]
+                };
+
+                pairs.Add(pair);
+            }
+
+            await _context.Pairs.AddRangeAsync(pairs);
+            await _context.SaveChangesAsync();
         }
     }
 }

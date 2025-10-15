@@ -14,11 +14,11 @@ namespace MemoryGame.Controllers
             _service = service;
         }
 
-        public IActionResult StartGame()
+        public async Task<IActionResult> StartGame()
         {
-            GameModel gameModel1 = new();
-            
-            
+            GameModel gameModel = new();
+
+            await _service.StartGameAsync();
 
 
             
