@@ -7,23 +7,24 @@ namespace MemoryGame.Controllers
     public class GameController : Controller
     {
 
-        private readonly GameService _service;
+        private readonly GameService _gameService;
+        private readonly CardService _cardService;
 
-        public GameController(GameService service)
+        public GameController(GameService gameService, CardService cardService)
         {
-            _service = service;
+            _gameService = gameService;
+            _cardService = cardService;
         }
 
         public async Task<IActionResult> StartGame()
         {
             GameModel gameModel = new();
 
-            await _service.StartGameAsync();
+            await _gameService.StartGameAsync();
 
-
+            var cards = await _cardService.GetAllCardsAsync();
             
-            
-            return View();
+            return View(cards);
         }
 
     }

@@ -1,7 +1,70 @@
 ﻿
+@model IEnumerable<MemoryGame.Models.CardModel>
+
 @{
-    ViewData["Title"] = "StartGame";
+    ViewData["Title"] = "Memory";
 }
 
-<h1>StartGame</h1>
+<h1>Memory yeahh</h1>
 
+<div class="game-board">
+    @foreach (var card in Model)
+    {
+        <div class="card">
+            @if (card.IsHidden)
+            {
+                <!-- Dold kortbaksida -->
+                <div class="card-back"></div>
+            }
+            else
+            {
+                <!-- Visa bild -->
+                <img src="data:image/png;base64,@card.Pair.Image"
+                     alt="Card image"
+                     class="card-image" />
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .game-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+        justify-items: center;
+        margin-top: 20px;
+    }
+
+    .card {
+        width: 120px;
+        height: 120px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card-back {
+        width: 100%;
+        height: 100%;
+        background-color: #4a90e2;
+        border-radius: 8px;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+</style>

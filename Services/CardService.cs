@@ -23,5 +23,30 @@ namespace MemoryGame.Services
             return await _repo.GetByIdAsync(id);
         }
 
+        public async Task ResetCard(int id)
+        {
+            var card = await GetByIdAsync(id);
+
+            if (card == null)
+            {
+                return;
+            }
+
+            card.IsMatched = false;
+            card.IsHidden = true;
+
+            await _repo.UpdateCard(card);
+        }
+
+        public async Task ResetCards()
+        {
+            var cards = await GetAllCardsAsync();
+
+            foreach (var card in cards)
+            {
+                await ResetCard(card.CardId);
+            }
+        }
+
     }
 }

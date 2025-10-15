@@ -11,11 +11,14 @@ namespace MemoryGame.Services
     {
         private readonly GameRepository _gameRepository;
         private readonly PairRepository _pairRepository;
+        private readonly CardRepository _cardRepository;
+        private readonly CardService _cardService;
 
-        public GameService(GameRepository gameRepository, PairRepository pairRepository)
+        public GameService(GameRepository gameRepository, PairRepository pairRepository, CardService cardService)
         {
             _gameRepository = gameRepository;
             _pairRepository = pairRepository;
+            _cardService = cardService;
         }
 
         public async Task<GameEntity?> GetGameAsync(int id)
@@ -35,13 +38,23 @@ namespace MemoryGame.Services
 
         public async Task StartGameAsync()
         {
-            await _pairRepository.SeedPairsAsync();
+            await InitializeGame();
+
+
+
         }
        
 
         public async Task UpdateGameAsync(GameEntity updatedGame)
         {
             await _gameRepository.UpdateAsync(updatedGame);
+        }
+
+
+        public async Task InitializeGame()
+        {
+            await _pairRepository.SeedPairsAsync();
+            await _cardService.ResetCards();
         }
 
     }

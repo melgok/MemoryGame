@@ -1,3 +1,5 @@
+using MemoryGame.Model;
+
 namespace MemoryGame.Models
 {
     public class CardModel
@@ -5,7 +7,7 @@ namespace MemoryGame.Models
         public int CardId { get; set; }
         public bool IsHidden { get; set; }
         public bool IsMatched { get; set; }
-        public int PairId { get; set; }
+        public PairModel? Pair { get; set; }
     
     }
 }

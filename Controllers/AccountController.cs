@@ -22,6 +22,11 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(int Player1Id, string Player1Username, string Player1Password, int Player2Id, string Player2Username, string Player2Password)
     {
+        HttpContext.Session.SetString("Player1", "Tindra");
+        HttpContext.Session.SetString("Player2", "Melissa");
+        return RedirectToAction("ConfirmLogin");
+        // TODO: TA BORT!
+
         var players = await _service.GetAllPlayersAsync();
         ViewBag.PlayerList = new SelectList(players, "PlayerId", "DisplayName");
 
