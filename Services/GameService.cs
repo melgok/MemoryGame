@@ -9,6 +9,7 @@ namespace MemoryGame.Services
     public class GameService
     {
         private readonly GameRepository _gameRepository;
+        private readonly PairRepository _pairRepository;
 
         public GameService(GameRepository gameRepository)
         {
@@ -29,6 +30,17 @@ namespace MemoryGame.Services
         {
             await _gameRepository.AddAsync(newGame);
         }
+
+        public async Task StartGameAsync()
+        {
+            var allPairs = await _pairRepository.GetAllAsync();
+            if (!allPairs.Any())
+            {
+                await _pairRepository.CreatePairAsync();   
+                allPairs = await _pairRepository.GetAllAsync();
+            }
+        }
+       
 
         public async Task UpdateGameAsync(GameEntity updatedGame)
         {
