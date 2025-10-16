@@ -27,6 +27,15 @@ namespace MemoryGame.Controllers
             return View(cards);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PlayTurn(int cardId)
+        {
+            await _gameService.PlayTurn(cardId);
+            var cards = await _cardService.GetAllCardsAsync();
+            return View("StartGame", cards);
+        }
+
+
     }
 
     

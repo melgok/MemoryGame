@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<MemoryGame.Models.CardModel>
+﻿@model IEnumerable<MemoryGame.Models.CardModel>
 
 @{
     ViewData["Title"] = "Memory";
@@ -13,7 +12,10 @@
         <div class="card">
             @if (card.IsHidden)
             {
-                <div class="card-back"></div>
+                <form asp-action="PlayTurn" method="post" class="playTurnForm" data-image="@card.Pair.Image">
+                    <input type="hidden" name="cardId" value="@card.CardId" />
+                    <button type="submit" class="card-back"></button>
+                </form>
             }
             else
             {
@@ -24,6 +26,20 @@
         </div>
     }
 </div>
+
+<script>
+    document.querySelectorAll('.playTurnForm').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // prevent direct postback
+            const image = this.getAttribute('data-image');
+            this.outerHTML = `<img src="data:image/png;base64,${image}" class="card-image" />`;
+
+            setTimeout(() => {
+                this.submit(); // submit the form to the server after delay
+            }, 1000);
+        });
+    });
+</script>
 
 <style>
     .game-board {
